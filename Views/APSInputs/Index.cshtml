@@ -1,0 +1,155 @@
+﻿@model IEnumerable<CPICPP.Models.APSInput>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeLan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeLanScore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstLan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstLanScore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OptionalLan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OptionalLanScore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Math)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MathScore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LOScore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddSubject1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddSubject1Score)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddSubject2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddSubject2Score)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddSubject3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddSubject3Score)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddSubject4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddSubject4Score)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddSubject5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddSubject5Score)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalScore)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeLan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeLanScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstLan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstLanScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionalLan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionalLanScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Math)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MathScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LOScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddSubject1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddSubject1Score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddSubject2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddSubject2Score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddSubject3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddSubject3Score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddSubject4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddSubject4Score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddSubject5)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddSubject5Score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalScore)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.APSInputId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.APSInputId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.APSInputId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

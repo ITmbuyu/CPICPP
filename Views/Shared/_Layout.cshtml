@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CPICPPApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CPICPPApp.styles.css" asp-append-version="true" />
+    <!-- Add this in the <head> section of your layout file -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CPICPPApp</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+
+                        <!-- Group 1: Academic-related entities -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" id="academicDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Academic
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="academicDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="GPAInputs" asp-action="Index">GPA</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="APSInputs" asp-action="Index">APS</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="GPAVerifications" asp-action="Index">GPA Verification</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="APSVerifications" asp-action="Index">APS Verification</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="GPAAnalysis" asp-action="Index">GPA Analysis</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="APSAnalysis" asp-action="Index">APS Analysis</a>
+                            </div>
+                        </li>
+
+                        <!-- Group 2: Career-related entities -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" id="careerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Career
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="careerDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="CareerPathAlignments" asp-action="Index">Career Path Alignments</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="CareerRecommendations" asp-action="Index">Career Recommendations</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="CareerJobs" asp-action="Index">Career Jobs</a>
+                            </div>
+                        </li>
+
+                        <!-- Group 3: Interest and questionnaire-related entities -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" id="interestDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Interests
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="interestDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="InterestAssessments" asp-action="Index">Interest Assessment</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="InterestEvaluations" asp-action="Index">Interest Evaluation</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="InterestProfiles" asp-action="Index">Interest Profile</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="InterestCareerPathAlignments" asp-action="Index">Interest Career Alignment</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="QuestionnaireQuestions" asp-action="Index">Questionnaire Questions</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="QuestionnaireResponses" asp-action="Index">Questionnaire Responses</a>
+                            </div>
+                        </li>
+
+                        <!-- Group 4: Progress and tracking-related entities -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" id="progressDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Progress
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="progressDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="ProgressTrackings" asp-action="Index">Progress Trackings</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Milestones" asp-action="Index">Milestones</a>
+                            </div>
+                        </li>
+
+                        <!-- Group 5: Institution-related entities -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" id="institutionDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Institutions
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="institutionDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Institutions" asp-action="Index">Institution</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="InstitutionPrograms" asp-action="Index">Institution Program</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="InstitutionRankings" asp-action="Index">Institution Ranking</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="InstitutionReviews" asp-action="Index">Institution Review</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="InstitutionAdmissionRequirements" asp-action="Index">Institution Admission Requirement</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="InstitutionCampusResources" asp-action="Index">Institution Campus Resource</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="InstitutionAlumnis" asp-action="Index">Institution Alumni</a>
+                            </div>
+                        </li>
+
+                        <!-- Group 6: Subject and education-related entities -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" id="subjectDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Subjects
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="subjectDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="SubjectCategories" asp-action="Index">Subject Categories</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Subjects" asp-action="Index">Subjects</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Countries" asp-action="Index">Countries</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Provinces" asp-action="Index">Provinces</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Cities" asp-action="Index">Cities</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="PostalCodes" asp-action="Index">Postal Codes</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Schools" asp-action="Index">Schools</a>
+                            </div>
+                        </li>
+                    </ul>
+
+
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - CPICPPApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.1/umd/popper.min.js"></script>
+    <!-- Add this before the closing </body> tag in your layout file -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.1/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

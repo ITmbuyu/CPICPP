@@ -1,0 +1,144 @@
+﻿@model CPICPP.Models.APSInput
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>APSInput</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HomeLan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HomeLan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HomeLanScore)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HomeLanScore)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstLan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FirstLan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstLanScore)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FirstLanScore)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OptionalLan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OptionalLan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OptionalLanScore)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OptionalLanScore)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Math)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Math)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MathScore)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MathScore)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LO)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LO)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LOScore)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LOScore)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AddSubject1)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AddSubject1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AddSubject1Score)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AddSubject1Score)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AddSubject2)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AddSubject2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AddSubject2Score)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AddSubject2Score)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AddSubject3)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AddSubject3)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AddSubject3Score)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AddSubject3Score)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AddSubject4)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AddSubject4)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AddSubject4Score)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AddSubject4Score)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AddSubject5)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AddSubject5)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AddSubject5Score)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AddSubject5Score)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TotalScore)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TotalScore)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.APSInputId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
