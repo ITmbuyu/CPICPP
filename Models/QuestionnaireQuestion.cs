@@ -7,7 +7,7 @@
         public string QuestionText { get; set; }
 
         // Navigation property for QuestionnaireResponses
-        public ICollection<QuestionnaireResponse> Responses { get; set; }
+        public ICollection<QuestionnaireResponse>? Responses { get; set; }
 
     }
 }

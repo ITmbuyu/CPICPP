@@ -88,11 +88,57 @@ namespace CPICPP.Controllers
                 int judgingPoints = 0;
                 int perceivingPoints = 0;
 
+                // Define a list of the 8 specific questions
+                List<string> specificQuestions = new List<string>
+        {
+            "Focus on the outer world of people and things Receive energy from interacting with people Energized by taking action; active Prefer communicating by talking (over writing) Work out ideas by talking them through Learn best through sharing/doing/discussing Have broad interests",
+            "Internal focus on ideas, memories, or emotion Receive energy from reflecting on thoughts Prefer communicating in writing (over talking) Learn best by having time alone to process Prefer working in quiet environments Able to focus on one project at length Known to be reflective, quiet, private, or deep",
+            "Focus on the present; what is happening now Prefer real/concrete/tangible information Attentive to details, specifics, and facts Enjoy tasks with an orderly, sequential format Like having five senses engaged while working Work at a steady pace and have stamina Known to be practical, steady, and orderly",
+            "Focus on future; possibilities and potential See the big picture, connections, or patterns Remember specifics when part of a pattern Imaginative and creative Bored by routine and sequential tasks Like solving problems and developing new skills Have bursts of energy rather than stamina",
+            "Examine logical consequences of decisions Objectively weigh the pros and cons Base decisions on impersonal analysis and logic Energized by problem solving and critiquing Seek standard principles to apply uniformly Look for cause/effect relationships in data Consider feelings when presented as facts",
+            "Base decisions on subjective values Enjoy appreciating and supporting others Actively look for qualities to praise in others Value and create harmonious environments Honor each person as a unique individual Assess impacts of decisions on others Work best in supportive, encouraging settings",
+            "Prefer to make decisions with information Make decisions as soon as possible Enjoy having closure; like things settled Plan and organize their world Like roles and expectations to be clear Enjoy getting things done/being productive Plan ahead to avoid last minute stresses",
+            "Prefer to take in information and understand Keep things open-ended as long as possible Seek to experience and live life; not control it Open to new options and last-minute changes Enjoy starting projects but often never finish Able to adapt; flexible Energized by last minute pressures"
+        };
+
                 // Iterate through questions and user responses
                 for (int i = 0; i < viewModel.QuestionTexts.Count; i++)
                 {
                     bool response = viewModel.UserResponses[i]; // The user response (true or false)
                     string dimension = viewModel.Dimensions[i]; // The question's dimension
+
+                    // Check if the question text is one of the 8 specific questions
+                    if (specificQuestions.Contains(viewModel.QuestionTexts[i]) && response)
+                    {
+                        // If the user answered "yes" to a specific question, add 2 points to the corresponding counter
+                        switch (specificQuestions.IndexOf(viewModel.QuestionTexts[i]))
+                        {
+                            case 0:
+                                extraversionPoints += 2;
+                                break;
+                            case 1:
+                                introversionPoints += 2;
+                                break;
+                            case 2:
+                                sensingPoints += 2;
+                                break;
+                            case 3:
+                                intuitionPoints += 2;
+                                break;
+                            case 4:
+                                thinkingPoints += 2;
+                                break;
+                            case 5:
+                                feelingPoints += 2;
+                                break;
+                            case 6:
+                                judgingPoints += 2;
+                                break;
+                            case 7:
+                                perceivingPoints += 2;
+                                break;
+                        }
+                    }
 
                     if (response) // Check if the response is "true"
                     {

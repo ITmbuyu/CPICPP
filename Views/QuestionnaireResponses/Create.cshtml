@@ -30,3 +30,76 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 }
 
+<!-- "Generate Answers" button placed outside the form -->
+<button id="generateAnswersButton">Generate Answers</button>
+
+
+<script>
+    $(document).ready(function () {
+        // Define a mapping of questions to their opposites
+        var questionOppositeMap = {
+            "Focus on the outer world of people and things Receive energy from interacting with people Energized by taking action; active Prefer communicating by talking (over writing) Work out ideas by talking them through Learn best through sharing/doing/discussing Have broad interests": "Internal focus on ideas, memories, or emotion Receive energy from reflecting on thoughts Prefer communicating in writing (over talking) Learn best by having time alone to process Prefer working in quiet environments Able to focus on one project at length Known to be reflective, quiet, private, or deep",
+            "Internal focus on ideas, memories, or emotion Receive energy from reflecting on thoughts Prefer communicating in writing (over talking) Learn best by having time alone to process Prefer working in quiet environments Able to focus on one project at length Known to be reflective, quiet, private, or deep": "Focus on the outer world of people and things Receive energy from interacting with people Energized by taking action; active Prefer communicating by talking (over writing) Work out ideas by talking them through Learn best through sharing/doing/discussing Have broad interests",
+            "Focus on the present; what is happening now Prefer real/concrete/tangible information Attentive to details, specifics, and facts Enjoy tasks with an orderly, sequential format Like having five senses engaged while working Work at a steady pace and have stamina Known to be practical, steady, and orderly": "Focus on future; possibilities and potential See the big picture, connections, or patterns Remember specifics when part of a pattern Imaginative and creative Bored by routine and sequential tasks Like solving problems and developing new skills Have bursts of energy rather than stamina",
+            "Focus on future; possibilities and potential See the big picture, connections, or patterns Remember specifics when part of a pattern Imaginative and creative Bored by routine and sequential tasks Like solving problems and developing new skills Have bursts of energy rather than stamina": "Focus on the present; what is happening now Prefer real/concrete/tangible information Attentive to details, specifics, and facts Enjoy tasks with an orderly, sequential format Like having five senses engaged while working Work at a steady pace and have stamina Known to be practical, steady, and orderly",
+            "Examine logical consequences of decisions Objectively weigh the pros and cons Base decisions on impersonal analysis and logic Energized by problem solving and critiquing Seek standard principles to apply uniformly Look for cause/effect relationships in data Consider feelings when presented as facts": "Base decisions on subjective values Enjoy appreciating and supporting others Actively look for qualities to praise in others Value and create harmonious environments Honor each person as a unique individual Assess impacts of decisions on others Work best in supportive, encouraging settings",
+            "Base decisions on subjective values Enjoy appreciating and supporting others Actively look for qualities to praise in others Value and create harmonious environments Honor each person as a unique individual Assess impacts of decisions on others Work best in supportive, encouraging settings": "Examine logical consequences of decisions Objectively weigh the pros and cons Base decisions on impersonal analysis and logic Energized by problem solving and critiquing Seek standard principles to apply uniformly Look for cause/effect relationships in data Consider feelings when presented as facts",
+            "Prefer to make decisions with information Make decisions as soon as possible Enjoy having closure; like things settled Plan and organize their world Like roles and expectations to be clear Enjoy getting things done/being productive Plan ahead to avoid last minute stresses": "Prefer to take in information and understand Keep things open-ended as long as possible Seek to experience and live life; not control it Open to new options and last-minute changes Enjoy starting projects but often never finish Able to adapt; flexible Energized by last minute pressures",
+            "Prefer to take in information and understand Keep things open-ended as long as possible Seek to experience and live life; not control it Open to new options and last-minute changes Enjoy starting projects but often never finish Able to adapt; flexible Energized by last minute pressures": "Prefer to make decisions with information Make decisions as soon as possible Enjoy having closure; like things settled Plan and organize their world Like roles and expectations to be clear Enjoy getting things done/being productive Plan ahead to avoid last minute stresses"
+        };
+
+        // Add event listener to all radio buttons with the name "UserResponses"
+        $("input[name^='UserResponses']").change(function () {
+            var questionText = $(this).closest('.form-group').find('.control-label').text().trim();
+
+            // Get the opposite question text from the map
+            var oppositeQuestionText = questionOppositeMap[questionText];
+
+            if (oppositeQuestionText) {
+                // Set the corresponding opposite question to "No" or "Yes"
+                $("input[name^='UserResponses']").each(function () {
+                    if ($(this).closest('.form-group').find('.control-label').text().trim() === oppositeQuestionText) {
+                        $(this).prop("checked", !$(this).prop("checked"));
+                    }
+                });
+            }
+        });
+
+
+
+
+        $("#generateAnswersButton").click(function () {
+            // Iterate through all radio buttons with the name "UserResponses"
+            $("input[name^='UserResponses']").each(function () {
+                var questionText = $(this).closest('.form-group').find('.control-label').text().trim();
+
+                // Check if the question text is NOT one of the 8 specific questions
+                if (
+                    questionText !== "Focus on the outer world of people and things Receive energy from interacting with people Energized by taking action; active Prefer communicating by talking (over writing) Work out ideas by talking them through Learn best through sharing/doing/discussing Have broad interests" &&
+                    questionText !== "Internal focus on ideas, memories, or emotion Receive energy from reflecting on thoughts Prefer communicating in writing (over talking) Learn best by having time alone to process Prefer working in quiet environments Able to focus on one project at length Known to be reflective, quiet, private, or deep" &&
+                    questionText !== "Focus on the present; what is happening now Prefer real/concrete/tangible information Attentive to details, specifics, and facts Enjoy tasks with an orderly, sequential format Like having five senses engaged while working Work at a steady pace and have stamina Known to be practical, steady, and orderly" &&
+                    questionText !== "Focus on future; possibilities and potential See the big picture, connections, or patterns Remember specifics when part of a pattern Imaginative and creative Bored by routine and sequential tasks Like solving problems and developing new skills Have bursts of energy rather than stamina" &&
+                    questionText !== "Examine logical consequences of decisions Objectively weigh the pros and cons Base decisions on impersonal analysis and logic Energized by problem solving and critiquing Seek standard principles to apply uniformly Look for cause/effect relationships in data Consider feelings when presented as facts" &&
+                    questionText !== "Base decisions on subjective values Enjoy appreciating and supporting others Actively look for qualities to praise in others Value and create harmonious environments Honor each person as a unique individual Assess impacts of decisions on others Work best in supportive, encouraging settings" &&
+                    questionText !== "Prefer to make decisions with information Make decisions as soon as possible Enjoy having closure; like things settled Plan and organize their world Like roles and expectations to be clear Enjoy getting things done/being productive Plan ahead to avoid last minute stresses" &&
+                    questionText !== "Prefer to take in information and understand Keep things open-ended as long as possible Seek to experience and live life; not control it Open to new options and last-minute changes Enjoy starting projects but often never finish Able to adapt; flexible Energized by last minute pressures"
+                ) {
+                    // Generate a random number between 0 and 1
+                    var randomValue = Math.random() >= 0.5;
+
+                    // Set the radio button based on the random number (1 for Yes, 0 for No)
+                    if (randomValue) {
+                        $(this).prop("checked", true);
+                    } else {
+                        $(this).prop("checked", false);
+                    }
+                }
+            });
+
+            // Show an alert after generating answers
+            alert("Answers have been generated!");
+        });
+
+
+    });
+</script>
