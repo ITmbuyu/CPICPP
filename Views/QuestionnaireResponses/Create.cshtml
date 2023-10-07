@@ -1,28 +1,32 @@
-﻿@model CPICPP.Models.QuestionnaireResponse
+﻿@model CPICPP.ViewModels.QuestionnaireResponseViewModel
 
-@{
-    ViewData["Title"] = "Create";
-}
+<h2>Create Questionnaire Response</h2>
 
-<h1>Create</h1>
+@using (Html.BeginForm("Create", "QuestionnaireResponses", FormMethod.Post))
+{
+    @for (var i = 0; i < Model.QuestionTexts.Count; i++)
+    {
+        var dimension = Model.Dimensions[i];
+        if (i == 0 || dimension != Model.Dimensions[i - 1])
+        {
+            <h3>@dimension</h3>
+        }
 
-<h4>QuestionnaireResponse</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+        <div class="form-group">
+            <label class="control-label">@Model.QuestionTexts[i]</label>
+            @Html.Hidden("Dimensions[" + i + "]", Model.Dimensions[i]) <!-- Add this hidden field -->
+            @Html.Hidden("QuestionTexts[" + i + "]", Model.QuestionTexts[i]) <!-- Add this hidden field -->
+
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="UserResponses[@i]" value="true" />
+                <label class="form-check-label">Yes</label>
             </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="UserResponses[@i]" value="false" />
+                <label class="form-check-label">No</label>
+            </div>
+        </div>
+    }
+    <button type="submit" class="btn btn-primary">Submit</button>
 }
+

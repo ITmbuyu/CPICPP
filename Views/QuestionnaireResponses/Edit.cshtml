@@ -14,6 +14,31 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="QuestionnaireResponseId" />
             <div class="form-group">
+                <label asp-for="QuestionnaireQuestionId" class="control-label"></label>
+                <select asp-for="QuestionnaireQuestionId" class="form-control" asp-items="ViewBag.QuestionnaireQuestionId"></select>
+                <span asp-validation-for="QuestionnaireQuestionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserResponsesJson" class="control-label"></label>
+                <input asp-for="UserResponsesJson" class="form-control" />
+                <span asp-validation-for="UserResponsesJson" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuestionsAskedJson" class="control-label"></label>
+                <input asp-for="QuestionsAskedJson" class="form-control" />
+                <span asp-validation-for="QuestionsAskedJson" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MBTIType" class="control-label"></label>
+                <input asp-for="MBTIType" class="form-control" />
+                <span asp-validation-for="MBTIType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

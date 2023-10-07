@@ -1,0 +1,17 @@
+﻿@model List<CPICPP.Models.QuestionnaireQuestion>
+
+<form method="post" asp-action="Index" id="questionnaire-form">
+    @for (var i = 0; i < Model.Count; i++)
+    {
+        <div class="question">
+            <p>@Model[i].QuestionText</p>
+            <label>
+                <input type="radio" name="answers[@i].isYes" value="true" /> Yes
+            </label>
+            <label>
+                <input type="radio" name="answers[@i].isYes" value="false" /> No
+            </label>
+        </div>
+    }
+    <button type="submit">Submit</button>
+</form>

@@ -7,6 +7,19 @@ namespace CPICPP.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Configure the relationship between QuestionnaireResponse and QuestionnaireQuestion
+            modelBuilder.Entity<QuestionnaireResponse>()
+                .HasOne(response => response.QuestionnaireQuestion)
+                .WithMany(question => question.Responses)
+                .HasForeignKey(response => response.QuestionnaireQuestionId);
+
+            // You can configure other relationships or entity configurations here.
+        }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -23,6 +36,7 @@ namespace CPICPP.Data
         public DbSet<InterestAssessment> InterestAssessments { get; set; }
         public DbSet<QuestionnaireQuestion> QuestionnaireQuestions { get; set; }
         public DbSet<QuestionnaireResponse> QuestionnaireResponses { get; set; }
+        public DbSet<TestSession> TestSessions { get; set; }
         public DbSet<InterestEvaluation> InterestEvaluations { get; set; }
         public DbSet<InterestProfile> InterestProfiles { get; set; }
         public DbSet<InterestCareerPathAlignment> InterestCareerPathAlignments { get; set; }
@@ -44,5 +58,12 @@ namespace CPICPP.Data
         public DbSet<PostalCode> PostalCodes { get; set; }
         public DbSet<School> Schools { get; set; }
         public DbSet<CareerJob> CareerJobs { get; set; }
+        public DbSet<CareerCategory> CareerCategory { get; set; }
+        public DbSet<CareerTheory> CareerTheorys { get; set; }
     }
+
+    
+
+
 }
+

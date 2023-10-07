@@ -48,22 +48,48 @@ namespace CPICPP.Controllers
         // GET: APSInputs/Create
         public IActionResult Create()
         {
+            ViewBag.Language1Subjects = new SelectList(_context.Subjects.Where(s => s.SubjectCategory.SubjectCategoryName == "Language 1"), "SubjectName", "SubjectName");
+            ViewBag.Language2Subjects = new SelectList(_context.Subjects.Where(s => s.SubjectCategory.SubjectCategoryName == "Language 2"), "SubjectName", "SubjectName");
+            ViewBag.MathSubjects = new SelectList(_context.Subjects.Where(s => s.SubjectCategory.SubjectCategoryName == "Maths"), "SubjectName", "SubjectName");
+            ViewBag.LOSubjects = new SelectList(_context.Subjects.Where(s => s.SubjectCategory.SubjectCategoryName == "LO"), "SubjectName", "SubjectName");
+            ViewBag.CoreSubjects = new SelectList(_context.Subjects.Where(s => s.SubjectCategory.SubjectCategoryName == "Core Subjects"), "SubjectName", "SubjectName");
             return View();
         }
 
-        // POST: APSInputs/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+		
+
+		// POST: APSInputs/Create
+		// To protect from overposting attacks, enable the specific properties you want to bind to.
+		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("APSInputId,HomeLan,HomeLanScore,FirstLan,FirstLanScore,OptionalLan,OptionalLanScore,Math,MathScore,LO,LOScore,AddSubject1,AddSubject1Score,AddSubject2,AddSubject2Score,AddSubject3,AddSubject3Score,AddSubject4,AddSubject4Score,AddSubject5,AddSubject5Score,TotalScore")] APSInput aPSInput)
+        public async Task<IActionResult> Create([Bind("APSInputId,TestName,HomeLan,HomeLanScore,FirstLan,FirstLanScore,Math,MathScore,LO,LOScore,AddSubject1,AddSubject1Score,AddSubject2,AddSubject2Score,AddSubject3,AddSubject3Score,AddSubject4,AddSubject4Score,AddSubject5,AddSubject5Score,TotalScore")] APSInput aPSInput)
         {
             if (ModelState.IsValid)
             {
+                aPSInput.TotalScore = aPSInput.TotalAPSScore;
                 _context.Add(aPSInput);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            else
+            {
+                //// Log model state errors
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    // Log or print the error messages
+                    System.Diagnostics.Debug.WriteLine(error.ErrorMessage);
+                }
+
+            }
+
+            // If model state is not valid, redisplay the form with validation errors
+            ViewBag.Language1Subjects = new SelectList(_context.Subjects.Where(s => s.SubjectCategory.SubjectCategoryName == "Language 1"), "SubjectName", "SubjectName");
+            ViewBag.Language2Subjects = new SelectList(_context.Subjects.Where(s => s.SubjectCategory.SubjectCategoryName == "Language 2"), "SubjectName", "SubjectName");
+            ViewBag.MathSubjects = new SelectList(_context.Subjects.Where(s => s.SubjectCategory.SubjectCategoryName == "Maths"), "SubjectName", "SubjectName");
+            ViewBag.LOSubjects = new SelectList(_context.Subjects.Where(s => s.SubjectCategory.SubjectCategoryName == "LO"), "SubjectName", "SubjectName");
+            ViewBag.CoreSubjects = new SelectList(_context.Subjects.Where(s => s.SubjectCategory.SubjectCategoryName == "Core Subjects"), "SubjectName", "SubjectName");
+
             return View(aPSInput);
         }
 
@@ -88,7 +114,7 @@ namespace CPICPP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("APSInputId,HomeLan,HomeLanScore,FirstLan,FirstLanScore,OptionalLan,OptionalLanScore,Math,MathScore,LO,LOScore,AddSubject1,AddSubject1Score,AddSubject2,AddSubject2Score,AddSubject3,AddSubject3Score,AddSubject4,AddSubject4Score,AddSubject5,AddSubject5Score,TotalScore")] APSInput aPSInput)
+        public async Task<IActionResult> Edit(int id, [Bind("APSInputId,TestName,HomeLan,HomeLanScore,FirstLan,FirstLanScore,Math,MathScore,LO,LOScore,AddSubject1,AddSubject1Score,AddSubject2,AddSubject2Score,AddSubject3,AddSubject3Score,AddSubject4,AddSubject4Score,AddSubject5,AddSubject5Score,TotalScore")] APSInput aPSInput)
         {
             if (id != aPSInput.APSInputId)
             {

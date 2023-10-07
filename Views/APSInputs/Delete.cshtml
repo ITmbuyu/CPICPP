@@ -12,6 +12,12 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TestName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TestName)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.HomeLan)
         </dt>
         <dd class = "col-sm-10">
@@ -34,18 +40,6 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FirstLanScore)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OptionalLan)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OptionalLan)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OptionalLanScore)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OptionalLanScore)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Math)

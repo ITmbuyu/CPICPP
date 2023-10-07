@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.TestName)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.HomeLan)
             </th>
             <th>
@@ -23,12 +26,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FirstLanScore)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OptionalLan)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OptionalLanScore)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Math)
@@ -82,6 +79,9 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.TestName)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.HomeLan)
             </td>
             <td>
@@ -92,12 +92,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstLanScore)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OptionalLan)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OptionalLanScore)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Math)

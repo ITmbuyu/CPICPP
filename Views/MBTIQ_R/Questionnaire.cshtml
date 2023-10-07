@@ -1,0 +1,93 @@
+﻿@model List<CPICPP.Models.QuestionnaireQuestion>
+
+<form method="post" asp-action="Index" id="questionnaire-form">
+    @foreach (var dimension in Model.Select(q => q.Dimension).Distinct())
+    {
+        <h3>@dimension</h3>
+        <div class="questions">
+            @foreach (var question in Model.Where(q => q.Dimension == dimension))
+            {
+                <div class="question">
+                    <p>@question.QuestionText</p>
+                    <label>
+                        <input type="radio" name="answers[@question.QuestionnaireQuestionId]" value="true" /> Yes
+                    </label>
+                    <label>
+                        <input type="radio" name="answers[@question.QuestionnaireQuestionId]" value="false" /> No
+                    </label>
+                </div>
+            }
+        </div>
+    }
+    <div class="mbti-type" style="display: none;">
+        <p>Your MBTI Type: <span id="mbti-type"></span></p>
+    </div>
+    <button type="button" id="next-button">Next</button>
+    <button type="submit" id="submit-button" style="display: none;">Submit</button>
+</form>
+
+<script>
+    // JavaScript code for handling questions and MBTI calculation
+    var answers = [];
+    var dimensions = ["Extraversion", "Introversion", "Sensing", "Intuition", "Thinking", "Feeling", "Judging", "Perceiving"];
+    var questionIndex = 0; // Initialize the question index
+
+    // Function to update the question and answers array
+    function updateQuestion() {
+        var selectedValue = $("input[name='answers[" + questionIndex + "].isYes']:checked").val();
+        answers[questionIndex] = (selectedValue === "true");
+
+        questionIndex++; // Move to the next question
+
+        if (questionIndex < @Model.Count) {
+            $("#question-text").text("@@Model[questionIndex].QuestionText");
+        } else {
+            // All questions answered, calculate MBTI type
+            calculateMBTIType();
+        }
+    }
+
+    // Function to calculate the MBTI type
+    function calculateMBTIType() {
+        var mbtiType = "";
+
+        // Calculate MBTI points based on user responses
+        var points = [0, 0, 0, 0, 0, 0, 0, 0];
+        for (var i = 0; i < answers.length; i++) {
+            if (answers[i]) {
+                points[i % 8]++;
+            }
+        }
+
+        // Determine the MBTI type
+        for (var i = 0; i < dimensions.length; i++) {
+            mbtiType += (points[i] > (answers.length / 2)) ? dimensions[i][0] : dimensions[i][1];
+        }
+
+        // Display the calculated MBTI type in real-time
+        $("#mbti-type").text(mbtiType);
+        $(".mbti-type").show();
+
+        // Hide the "Next" button and show the "Submit" button
+        $("#next-button").hide();
+        $("#submit-button").show();
+    }
+
+    // Event handler for radio button click (real-time calculation)
+    $("input[name^='answers']").click(function () {
+        updateQuestion();
+    });
+
+    // Event handler for the "Submit" button
+    $("#submit-button").click(function () {
+        // Submit the form to the server for further processing
+        $("#questionnaire-form").submit();
+    });
+
+    // Initialize the first question
+    $("#question-text").text("@@Model[questionIndex].QuestionText");
+</script>
+
+
+
+

@@ -12,12 +12,42 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserResponsesJson)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuestionsAskedJson)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MBTIType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuestionnaireQuestion)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserResponsesJson)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionsAskedJson)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MBTIType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionnaireQuestion.QuestionnaireQuestionId)
+            </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.QuestionnaireResponseId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.QuestionnaireResponseId">Details</a> |

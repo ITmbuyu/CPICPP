@@ -17,7 +17,7 @@ namespace CPICPP.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.9")
+                .HasAnnotation("ProductVersion", "7.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -106,14 +106,11 @@ namespace CPICPP.Data.Migrations
                     b.Property<int>("MathScore")
                         .HasColumnType("int");
 
-                    b.Property<string>("OptionalLan")
+                    b.Property<string>("TestName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OptionalLanScore")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalScore")
+                    b.Property<int?>("TotalScore")
                         .HasColumnType("int");
 
                     b.HasKey("APSInputId");
@@ -256,6 +253,31 @@ namespace CPICPP.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("CPICPP.Models.CareerCategory", b =>
+                {
+                    b.Property<int>("CareerCategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CareerCategoryId"));
+
+                    b.Property<string>("CareerCategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("careercode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("careertypecode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CareerCategoryId");
+
+                    b.ToTable("CareerCategory");
+                });
+
             modelBuilder.Entity("CPICPP.Models.CareerJob", b =>
                 {
                     b.Property<int>("CareerJobId")
@@ -264,7 +286,20 @@ namespace CPICPP.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CareerJobId"));
 
+                    b.Property<int?>("CareerCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CareerJobDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CareerJobName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("CareerJobId");
+
+                    b.HasIndex("CareerCategoryId");
 
                     b.ToTable("CareerJobs");
                 });
@@ -293,6 +328,27 @@ namespace CPICPP.Data.Migrations
                     b.HasKey("CareerRecommendationId");
 
                     b.ToTable("CareerRecommendations");
+                });
+
+            modelBuilder.Entity("CPICPP.Models.CareerTheory", b =>
+                {
+                    b.Property<int>("CareerTheoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CareerTheoryId"));
+
+                    b.Property<string>("CareerTheoryDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CareerTheoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CareerTheoryId");
+
+                    b.ToTable("CareerTheorys");
                 });
 
             modelBuilder.Entity("CPICPP.Models.City", b =>
@@ -379,6 +435,10 @@ namespace CPICPP.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InstitutionId"));
+
+                    b.Property<string>("InstitutionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("InstitutionId");
 
@@ -584,6 +644,14 @@ namespace CPICPP.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuestionnaireQuestionId"));
 
+                    b.Property<string>("Dimension")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuestionText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("QuestionnaireQuestionId");
 
                     b.ToTable("QuestionnaireQuestions");
@@ -597,7 +665,24 @@ namespace CPICPP.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuestionnaireResponseId"));
 
+                    b.Property<string>("MBTIType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("QuestionnaireQuestionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("QuestionsAskedJson")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserResponsesJson")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("QuestionnaireResponseId");
+
+                    b.HasIndex("QuestionnaireQuestionId");
 
                     b.ToTable("QuestionnaireResponses");
                 });
@@ -647,7 +732,7 @@ namespace CPICPP.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("subjectcategoryid")
+                    b.Property<int?>("subjectcategoryid")
                         .HasColumnType("int");
 
                     b.HasKey("SubjectId");
@@ -672,6 +757,41 @@ namespace CPICPP.Data.Migrations
                     b.HasKey("SubjectCategoryId");
 
                     b.ToTable("SubjectCategorys");
+                });
+
+            modelBuilder.Entity("CPICPP.Models.TestSession", b =>
+                {
+                    b.Property<int>("TestSessionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TestSessionId"));
+
+                    b.Property<string>("GeneratedMBTIType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuestionsAskedJson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TestName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserResponsesJson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TestSessionId");
+
+                    b.ToTable("TestSessions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -811,6 +931,15 @@ namespace CPICPP.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("CPICPP.Models.CareerJob", b =>
+                {
+                    b.HasOne("CPICPP.Models.CareerCategory", "CareerCategory")
+                        .WithMany()
+                        .HasForeignKey("CareerCategoryId");
+
+                    b.Navigation("CareerCategory");
+                });
+
             modelBuilder.Entity("CPICPP.Models.Province", b =>
                 {
                     b.HasOne("CPICPP.Models.Country", "Country")
@@ -822,13 +951,20 @@ namespace CPICPP.Data.Migrations
                     b.Navigation("Country");
                 });
 
+            modelBuilder.Entity("CPICPP.Models.QuestionnaireResponse", b =>
+                {
+                    b.HasOne("CPICPP.Models.QuestionnaireQuestion", "QuestionnaireQuestion")
+                        .WithMany("Responses")
+                        .HasForeignKey("QuestionnaireQuestionId");
+
+                    b.Navigation("QuestionnaireQuestion");
+                });
+
             modelBuilder.Entity("CPICPP.Models.Subject", b =>
                 {
                     b.HasOne("CPICPP.Models.SubjectCategory", "SubjectCategory")
                         .WithMany()
-                        .HasForeignKey("subjectcategoryid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("subjectcategoryid");
 
                     b.Navigation("SubjectCategory");
                 });
@@ -882,6 +1018,11 @@ namespace CPICPP.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CPICPP.Models.QuestionnaireQuestion", b =>
+                {
+                    b.Navigation("Responses");
                 });
 #pragma warning restore 612, 618
         }

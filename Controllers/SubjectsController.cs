@@ -48,7 +48,7 @@ namespace CPICPP.Controllers
         // GET: Subjects/Create
         public IActionResult Create()
         {
-            ViewData["subjectcategoryid"] = new SelectList(_context.SubjectCategorys, "SubjectCategoryId", "SubjectCategoryId");
+            ViewData["subjectcategoryid"] = new SelectList(_context.SubjectCategorys, "SubjectCategoryId", "SubjectCategoryName");
             return View();
         }
 
@@ -65,7 +65,14 @@ namespace CPICPP.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["subjectcategoryid"] = new SelectList(_context.SubjectCategorys, "SubjectCategoryId", "SubjectCategoryId", subject.subjectcategoryid);
+
+            // Log model state errors
+            //foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+            //{
+            //    // Log or print the error messages
+            //    System.Diagnostics.Debug.WriteLine(error.ErrorMessage);
+            //}
+            ViewData["subjectcategoryid"] = new SelectList(_context.SubjectCategorys, "SubjectCategoryId", "SubjectCategoryName", subject.subjectcategoryid);
             return View(subject);
         }
 

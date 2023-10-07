@@ -4,6 +4,30 @@
     ViewData["Title"] = "Create";
 }
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Attach an event listener to all subject dropdowns
+        $('.subject-dropdown').change(function () {
+            // Get the selected option value
+            var selectedValue = $(this).val();
+
+            // Loop through all subject dropdowns
+            $('.subject-dropdown').each(function () {
+                // Disable all options in other subject dropdowns
+                var otherDropdown = $(this);
+                otherDropdown.find('option').prop('disabled', false);
+
+                // Exclude the currently selected option
+                if (otherDropdown !== $(this)) {
+                    otherDropdown.find('option[value="' + selectedValue + '"]').prop('disabled', true);
+                }
+            });
+        });
+    });
+</script>
+
 <h1>Create</h1>
 
 <h4>APSInput</h4>
@@ -13,106 +37,137 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="TestName" class="control-label"></label>
+                <input asp-for="TestName" class="form-control" />
+                <span asp-validation-for="TestName" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
                 <label asp-for="HomeLan" class="control-label"></label>
                 <input asp-for="HomeLan" class="form-control" />
                 <span asp-validation-for="HomeLan" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="HomeLan" class="control-label">Language 1 Subject</label>
+                <select class="subject-dropdown" asp-for="HomeLan" asp-items="@(ViewBag.Language1Subjects)" class="form-control"></select>
             </div>
             <div class="form-group">
                 <label asp-for="HomeLanScore" class="control-label"></label>
                 <input asp-for="HomeLanScore" class="form-control" />
                 <span asp-validation-for="HomeLanScore" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="FirstLan" class="control-label"></label>
                 <input asp-for="FirstLan" class="form-control" />
                 <span asp-validation-for="FirstLan" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label for="FirstLan" class="control-label">Language 2 Subject</label>
+                <select class="subject-dropdown" asp-for="FirstLan" asp-items="@(ViewBag.Language2Subjects)" class="form-control"></select>
             </div>
             <div class="form-group">
                 <label asp-for="FirstLanScore" class="control-label"></label>
                 <input asp-for="FirstLanScore" class="form-control" />
                 <span asp-validation-for="FirstLanScore" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="OptionalLan" class="control-label"></label>
-                <input asp-for="OptionalLan" class="form-control" />
-                <span asp-validation-for="OptionalLan" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OptionalLanScore" class="control-label"></label>
-                <input asp-for="OptionalLanScore" class="form-control" />
-                <span asp-validation-for="OptionalLanScore" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="Math" class="control-label"></label>
                 <input asp-for="Math" class="form-control" />
                 <span asp-validation-for="Math" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label for="Math" class="control-label">Math Subject</label>
+                <select class="subject-dropdown" asp-for="Math" asp-items="@(ViewBag.MathSubjects)" class="form-control"></select>
             </div>
             <div class="form-group">
                 <label asp-for="MathScore" class="control-label"></label>
                 <input asp-for="MathScore" class="form-control" />
                 <span asp-validation-for="MathScore" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="LO" class="control-label"></label>
                 <input asp-for="LO" class="form-control" />
                 <span asp-validation-for="LO" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label for="LO" class="control-label">LO Subject</label>
+                <select class="subject-dropdown" asp-for="LO" asp-items="@(ViewBag.LOSubjects)" class="form-control"></select>
             </div>
             <div class="form-group">
                 <label asp-for="LOScore" class="control-label"></label>
                 <input asp-for="LOScore" class="form-control" />
                 <span asp-validation-for="LOScore" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="AddSubject1" class="control-label"></label>
                 <input asp-for="AddSubject1" class="form-control" />
                 <span asp-validation-for="AddSubject1" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label for="AddSubject1" class="control-label">Core Subject 1</label>
+                <select class="subject-dropdown" asp-for="AddSubject1" asp-items="@(ViewBag.CoreSubjects)" class="form-control"></select>
             </div>
             <div class="form-group">
                 <label asp-for="AddSubject1Score" class="control-label"></label>
                 <input asp-for="AddSubject1Score" class="form-control" />
                 <span asp-validation-for="AddSubject1Score" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="AddSubject2" class="control-label"></label>
                 <input asp-for="AddSubject2" class="form-control" />
                 <span asp-validation-for="AddSubject2" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label for="AddSubject2" class="control-label">Core Subject 2</label>
+                <select class="subject-dropdown" asp-for="AddSubject2" asp-items="@(ViewBag.CoreSubjects)" class="form-control"></select>
             </div>
             <div class="form-group">
                 <label asp-for="AddSubject2Score" class="control-label"></label>
                 <input asp-for="AddSubject2Score" class="form-control" />
                 <span asp-validation-for="AddSubject2Score" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="AddSubject3" class="control-label"></label>
                 <input asp-for="AddSubject3" class="form-control" />
                 <span asp-validation-for="AddSubject3" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label for="AddSubject3" class="control-label">Core Subject 3</label>
+                <select class="subject-dropdown" asp-for="AddSubject3" asp-items="@(ViewBag.CoreSubjects)" class="form-control"></select>
             </div>
             <div class="form-group">
                 <label asp-for="AddSubject3Score" class="control-label"></label>
                 <input asp-for="AddSubject3Score" class="form-control" />
                 <span asp-validation-for="AddSubject3Score" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="AddSubject4" class="control-label"></label>
                 <input asp-for="AddSubject4" class="form-control" />
                 <span asp-validation-for="AddSubject4" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label for="AddSubject4" class="control-label">Core Subject 4</label>
+                <select class="subject-dropdown" asp-for="AddSubject4" asp-items="@(ViewBag.CoreSubjects)" class="form-control"></select>
             </div>
             <div class="form-group">
                 <label asp-for="AddSubject4Score" class="control-label"></label>
                 <input asp-for="AddSubject4Score" class="form-control" />
                 <span asp-validation-for="AddSubject4Score" class="text-danger"></span>
             </div>
-            <div class="form-group">
+           @*  <div class="form-group">
                 <label asp-for="AddSubject5" class="control-label"></label>
                 <input asp-for="AddSubject5" class="form-control" />
                 <span asp-validation-for="AddSubject5" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label for="AddSubject5" class="control-label">Core Subject 5</label>
+                <select class="subject-dropdown" asp-for="AddSubject5" asp-items="@(ViewBag.CoreSubjects)" class="form-control"></select>
             </div>
             <div class="form-group">
                 <label asp-for="AddSubject5Score" class="control-label"></label>
                 <input asp-for="AddSubject5Score" class="form-control" />
                 <span asp-validation-for="AddSubject5Score" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display:none">
                 <label asp-for="TotalScore" class="control-label"></label>
                 <input asp-for="TotalScore" class="form-control" />
                 <span asp-validation-for="TotalScore" class="text-danger"></span>

@@ -14,6 +14,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="APSInputId" />
             <div class="form-group">
+                <label asp-for="TestName" class="control-label"></label>
+                <input asp-for="TestName" class="form-control" />
+                <span asp-validation-for="TestName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="HomeLan" class="control-label"></label>
                 <input asp-for="HomeLan" class="form-control" />
                 <span asp-validation-for="HomeLan" class="text-danger"></span>
@@ -32,16 +37,6 @@
                 <label asp-for="FirstLanScore" class="control-label"></label>
                 <input asp-for="FirstLanScore" class="form-control" />
                 <span asp-validation-for="FirstLanScore" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OptionalLan" class="control-label"></label>
-                <input asp-for="OptionalLan" class="form-control" />
-                <span asp-validation-for="OptionalLan" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OptionalLanScore" class="control-label"></label>
-                <input asp-for="OptionalLanScore" class="form-control" />
-                <span asp-validation-for="OptionalLanScore" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Math" class="control-label"></label>

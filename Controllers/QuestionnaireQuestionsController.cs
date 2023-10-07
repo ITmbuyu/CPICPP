@@ -56,7 +56,7 @@ namespace CPICPP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("QuestionnaireQuestionId")] QuestionnaireQuestion questionnaireQuestion)
+        public async Task<IActionResult> Create([Bind("QuestionnaireQuestionId,Dimension,QuestionText")] QuestionnaireQuestion questionnaireQuestion)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace CPICPP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("QuestionnaireQuestionId")] QuestionnaireQuestion questionnaireQuestion)
+        public async Task<IActionResult> Edit(int id, [Bind("QuestionnaireQuestionId,Dimension,QuestionText")] QuestionnaireQuestion questionnaireQuestion)
         {
             if (id != questionnaireQuestion.QuestionnaireQuestionId)
             {
